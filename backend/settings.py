@@ -15,7 +15,7 @@ DEBUG = config("DEBUG", default=False, cast=bool)
 
 ALLOWED_HOSTS = [
     "unima-notes.vercel.app",       
-    "yourapp.onrender.com",          
+    "notesdigitalbrainslab.onrender.com",          
     "localhost", "127.0.0.1"         
 ]
 
@@ -64,14 +64,22 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 
-
-DATABASES = {
+if config("DATABASE_URL",default=None):
+  DATABASES = {
     'default': dj_database_url.parse(
         config("DATABASE_URL", default=f"sqlite:///{BASE_DIR}/db.sqlite3"), 
         conn_max_age=600,
         ssl_require=True if not DEBUG else False   
     )
 }
+else:
+  DATABASES ={
+    'default':{
+      'ENGINE':'django.db.backends.sqlite3',
+      'NAME':BASE_DIR/"db.sqlite3",
+    }
+  }
+     
 
 
 AUTH_PASSWORD_VALIDATORS = [

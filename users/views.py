@@ -4,6 +4,12 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from users.serializers.register_serializer import RegisterSerializer
 from users.serializers.login_serializer import LoginSerializer
 from users.models import CustomUser
+#test
+from rest_framework.views import APIView
+
+class Helloworldview(APIView):
+    def get(self,request):
+        return Response({"message:":"helloworld"},status=status.HTTP_200_OK)
 
 class RegisterView(generics.CreateAPIView):
     queryset = CustomUser.objects.all()
