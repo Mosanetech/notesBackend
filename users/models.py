@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
+from django.conf import settings
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, username, email=None, phone_number=None, password=None, **extra_fields):
@@ -36,3 +37,11 @@ class CustomUser(AbstractBaseUser):
 
     def __str__(self):
         return self.username
+
+class Profile(models.Model):
+    user=models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='Profile')
+    photo=models.ImageField(upload_to='profile_pics/',null=True,blank=True)
+    bio =models.TextField(blank=True,null=True)
+
+    def __str__(self):
+     return f"{self.user.username}'Profile"
