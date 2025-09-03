@@ -22,8 +22,10 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     'users',
+    'notesPage',
     'corsheaders',        
     'rest_framework',
+    'rest_framework.authtoken',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -99,6 +101,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"  # 👉 Added for optimized static serving
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -110,5 +114,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://unima-notes.vercel.app",   
     "http://localhost:3000",            
 ]
+
+
 
 

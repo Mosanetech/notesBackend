@@ -12,3 +12,9 @@ venv/
 # Django static files
 /staticfiles/
 
+
+/media/
+staticfiles/
+
+.vscode/
+*.idea/
